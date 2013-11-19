@@ -1,0 +1,10 @@
+html{
+	font-family: arial;
+	background-color: lightgrey;
+	margin-left: 350px;
+}
+
+div{
+	width: 400px;
+	border:solid 1px white;
+}
