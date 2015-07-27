@@ -30,7 +30,7 @@ window.onload(function() {
 	var sectionNumbers = [0,0,0,0,0,0];
 
 	//现在循环已找到的标题元素
-	for (var h = 0; i < headings.length; h++) {
+	for (var h = 0; h < headings.length; h++) {
 		var heading = headings[h];
 
 		//跳过在TOC容器中的标题元素
