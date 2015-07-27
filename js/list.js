@@ -1,8 +1,8 @@
 
-window.onload(function() {
+
 	var toc = document.getElementById("TOC");
 	if(!toc) {
-		toc = document.creatElement("div");
+		toc = document.createElement("div");
 		toc.id = "TOC";
 		document.body.insertBefore(toc, document.body.firstChild);
 	}
@@ -16,7 +16,7 @@ window.onload(function() {
 
 	//递归遍历document的body，查找标题元素
 	function findHeadings(root, sects) {
-		for(var c = root.firstChild; c != null; c = c.nextSibling;) {
+		for(var c = root.firstChild; c != null; c = c.nextSibling) {
 			if (c.nodeType !== 1) continue; //!==element 继续循环
 			if (c.tagName.length == 2 && c.tagName.charAt(0) == "H") 
 				sects.push(c);
@@ -49,24 +49,24 @@ window.onload(function() {
 		var sectionNumber = sectionNumbers.slice(0,level).join(".");
 
 		//为标题级别增加章节号，把数字放在span中，使其可以用样式修饰
-		var span = document.creatElement("span");
+		var span = document.createElement("span");
 		span.className = "TOCSectNum";
 		span.innerHTML = sectionNumber;
 		heading.insertBefore(span, heading.firstChild);
 
 		//用命名的锚点将标题包起来，以便为它增加链接
-		var anchor = document.creatElement("a");
+		var anchor = document.createElement("a");
 		anchor.name = "TOC" + sectionNumber;
 		heading.parentNode.insertBefore(anchor, heading);
 		anchor.appendChild(heading);
 
 		//现在为该节创建一个链接
-		var link = document.creatElement("a");
+		var link = document.createElement("a");
 		link.href = "#TOC" + sectionNumber; //链接的目标地址
 		link.innerHTML = heading.innerHTML; //链接的文本与实际标题一致
 
 		//将链接放在一个div中，div用基于级别名字的样式修饰
-		var entry = document.creatElement("div");
+		var entry = document.createElement("div");
 		entry.className = "TOCEntry TOCLevel" + level;
 		entry.appendChild(link);
 
@@ -74,4 +74,3 @@ window.onload(function() {
 		toc.appendChild(entry);
 	};
 
-});
