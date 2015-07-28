@@ -17,7 +17,7 @@
 	//递归遍历document的body，查找标题元素
 	function findHeadings(root, sects) {
 		for(var c = root.firstChild; c != null; c = c.nextSibling) {
-			if (c.nodeType !== 1) continue; //!==element 继续循环
+			if (c.nodeType !== 1) continue; //!==element 跳过 继续循环
 			if (c.tagName.length == 2 && c.tagName.charAt(0) == "H") 
 				sects.push(c);
 			else
