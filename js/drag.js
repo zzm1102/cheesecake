@@ -14,7 +14,7 @@ function drag (elementToDrag, event) {
 	// 在文档坐标下，待拖动元素的初始位置；
 	// 因为elementToDrag 是绝对定位，可假设 offsetParent 是 body 元素
 	var origX = elementToDrag.offsetLeft;
-	var origY = elementToDrag.offserTop;
+	var origY = elementToDrag.offsetTop;
 
 	// 计算mousedown事件和元素左上角的距离，另存为鼠标移动距离
 	var deltaX = startX - origX;
@@ -64,8 +64,8 @@ function drag (elementToDrag, event) {
 
 		//注销捕获事件的处理程序
 		if (document.removeEventListener) {
-			document.removeEventListener("onmouseup", upHandler, true);
-			document.removeEventListener("onmousemove", moveHandler, true);
+			document.removeEventListener("mouseup", upHandler, true);
+			document.removeEventListener("mousemove", moveHandler, true);
 		} else if (document.detachEvent) {
 			elementToDrag.detachEvent("onlosecapture", upHandler);
 			elementToDrag.detachEvent("onmouseup", upHandler);
@@ -74,7 +74,19 @@ function drag (elementToDrag, event) {
 		}
 
 		//不让事件进一步传播
-		if (e,stopPropagation) {e.stopPropagation();}
+		if (e.stopPropagation) {e.stopPropagation();}
 		else {e.cancelBubble = true;}
 	}
-}
+
+	//工具函数
+	function getScrollOffsets(w) {
+        var w = w || window;
+        if (w.pageXoffset != null) {
+            return { x: w.pageXoffset, y: pageYoffset };
+        }
+        var d = w.document;
+        if (document.compatMode == "CSS1Compat")
+            return { x: d.documentElement.scrollLeft, y: d.documentElement.scrollTop };
+        return { x: d.body.scrollLeft, y: d.body.scrollTop };
+        }
+	}
