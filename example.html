@@ -3,7 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<script src="js/drag.js"></script>
+	<style type="text/css">
+		div.enclosure {
+			border: solid black 10px;
+			margin: 10px;
+		}
+	</style>
 </head>
 <body>
 <div style="position: absolute; left: 100px; top: 100px; width:250px; background-color: #fff; border: solid black;">
@@ -11,6 +16,14 @@
 	<p>这是一个测试。测试中。</p><p>测试</p><p>测试</p>
 </div>
 
-	
+<img id="content	" src="organic-practice/img/reed.jpg"></img>
+
+<script src="js/drag.js"></script>
+<script src="js/mousewheel.js"></script>
+<script type="text/javascript">
+document.onload = function() {
+	enclose(document.getElementById("content"), 400, 200, -200, -300);
+}
+</script>
 </body>
 </html>
